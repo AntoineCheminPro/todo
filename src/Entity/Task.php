@@ -49,6 +49,11 @@ class Task
      */
     private $Project;
 
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $status;
+
     public function __construct()
     {
         $this->Project = new ArrayCollection();
@@ -145,6 +150,18 @@ class Task
                 $project->setTasks(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
