@@ -1,0 +1,53 @@
+{# Héritage de la base #}
+{% extends "base.html.twig" %}
+{# <!-- On ouvre le bloc body du parent pour écrire notre template dedans --> #}
+{% block body %}
+<header class="jumbotron jumbotron-fluid text-white bg-info container mb-0 border-bottom p-4">
+	<div class="container row">
+		<div>
+			<h1 class="display-4">To Do List</h1>
+			<p class="lead ">Gérez vos projets en ligne</p>
+			<!-- Si un utilisateur est connecté on affiche son nom -->
+			{% if app.user %}
+				<p>Bonjour
+					{{app.user.username}}</p>
+			{% endif %}
+		</div>
+		<div
+			class="offset-3 col-2">{# <img class="logo" src="{{ asset('images/pig.png') }}" alt="logoSynfobank"/> #}
+		</div>
+	</div>
+</header>
+
+<nav
+	{# class="navbar navbar-expand-lg navbar-light text-secondary p-2 container">
+	<!-- Si un utilisateur est connecté avec le rôle de base -->
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<a class="btn btn-danger rounded-pill p-2 text-white mx-2" href="{{path('app_logout')}}">Déconnexion</a>
+	{% else %}
+		<a href="{{path('app_login')}}" class="btn btn-danger rounded-pill p-2 text-white mx-2">Connexion</a>
+		<a class="btn btn-warning rounded-pill p-2 text-dark mx-2" href="{{ path("app_register") }}">S'inscrire</a>
+	{% endif %}
+
+	<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="justify-content-between" id="navbarNav">
+		<a class="btn btn-warning rounded-pill p-2 text-dark" href="{{ path("index") }}">Accueil</a> #}
+		{# <a class="nav-link text-secondary" href="{{ path("acountcreation") }}">Création de compte</a> #}
+	{# </div> #}
+</nav>
+
+<main
+	class="container">
+	{% block main %}{% endblock %}
+</main>
+<footer class=" pt-4 pt-md-5 border-top bg-dark text-white">
+		<div class="row">
+			<div class="col-12 col-md">
+				<p class="d-block text-center">&copy; To Do List - November 2020</p>
+			</div>
+		</div>
+	</footer>
+{% endblock %}
