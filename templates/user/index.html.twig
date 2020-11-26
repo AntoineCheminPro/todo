@@ -1,51 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
+
 
 {% block title %}User index{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
+{% block main %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Adress</th>
-                <th>City_code</th>
-                <th>City</th>
-                <th>Phone</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.adress }}</td>
-                <td>{{ user.cityCode }}</td>
-                <td>{{ user.city }}</td>
-                <td>{{ user.phone }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_new') }}">Create new</a>
-{% endblock %}
+	<h1 >Index des utilisateurs</h1> {# class="txtheader text-center" #}
+    <section class="container row text-center">
+		{% for user in users %}
+        	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
+			{# <div class="card" style="width: 18rem;"> #}
+				<h4 class="card-header m-2 bg-white">
+					{{ user.firstname }}
+					{{ user.lastname }}
+				</h4>
+				<ul class="list-group list-group-flush align-items-center">
+					<li class="list-group-item my-2">{{ user.email }}   {{ user.phone }}</li>
+					<li class="list-group-item my-2">{{ user.adress }}</li>
+					<li class="list-group-item my-2">{{ user.cityCode }} {{ user.city }}</li>
+				</ul>
+			{# </div> #}
+			<div class="container row justify-content-around my-2">
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('user_show', {'id': user.id}) }}">Montrer</a>
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('user_edit', {'id': user.id}) }}">editer</a>
+			</div>
+	</article>
+    {% endfor %}
+</section>
+	{% endblock %}

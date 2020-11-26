@@ -20,6 +20,7 @@ class TaskFixtures extends Fixture
             $task->setContent($loremIpsum);
             $task->setActive(true);
             $task->setLabel("task N°".$i);
+            $task->setStatus("To do");
             $manager->persist($task);
             $manager->flush();
         }

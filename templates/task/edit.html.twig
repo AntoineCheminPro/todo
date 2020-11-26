@@ -2,7 +2,7 @@
 
 {% block title %}Edit Task{% endblock %}
 
-{% block body %}
+{% block body %}{% form_theme form 'bootstrap_4_layout.html.twig' %}
     <h1>Edit Task</h1>
 
     {{ include('task/_form.html.twig', {'button_label': 'Update'}) }}

@@ -16,8 +16,6 @@ class ProjectType extends AbstractType
             ->add('deadline')
             ->add('description')
             ->add('active')
-            ->add('Users')
-            ->add('Tasks')
         ;
     }
 
