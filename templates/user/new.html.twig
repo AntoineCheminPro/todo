@@ -3,10 +3,10 @@
 
 {% block title %}New User{% endblock %}
 
-{% block main %}
+{% block main %}{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
     <h1>Ajouter un nouvel utilisateur</h1>
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
     {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a class="btn btn-success" href="{{ path('user_index') }}">Retour</a>
 {% endblock %}

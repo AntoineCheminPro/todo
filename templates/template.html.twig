@@ -25,17 +25,26 @@
 		{% else %}
 			<a href="{{path('app_login')}}" class="btn btn-danger rounded-pill p-2 text-white mx-2">Connexion</a>
 		{% endif %}
-				<div class="justify-content-between" id="navbarNav">
+		<div class="justify-content-between" id="navbarNav">
 			<a class="btn btn-warning p-2 text-dark" href="{{ path("main") }}">Accueil</a>
-			{# <a class="nav-link text-secondary" href="{{ path("acountcreation") }}">Création de compte</a> #}
+		</div>
+		<div>
+			<a class="btn btn-lg bg-success m-2 p-1" href="{{ path('user_index') }}">Utilisateurs</a>
+			<a class="btn btn-lg bg-success m-2 p-1" href="{{ path('project_index') }}">Projets</a>
+			<a class="btn btn-lg bg-success m-2 p-1" href="{{ path('task_index') }}">Tâches</a>
+			{# <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button> #}
 		</div>
 
+		<div>
 			<a class="btn btn-lg bg-warning m-2 p-1" href="{{ path('user_new') }}">Ajouter un utilisateur</a>
 			<a class="btn btn-lg bg-warning m-2 p-1" href="{{ path('project_new') }}">nouveau projet</a>
-
-		<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<a class="btn btn-lg bg-warning m-2 p-1" href="{{ path('task_new') }}">Ajouter tâche</a>
+			{# <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button> #}
+		</div>
 	</nav>
 
 	<main class="container bodycolor txt">
