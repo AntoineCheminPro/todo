@@ -49,6 +49,11 @@ class Project
      */
     private $Tasks;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $label;
+
     public function __construct()
     {
         $this->Users = new ArrayCollection();
@@ -142,4 +147,17 @@ class Project
 
         return $this;
     }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+  
 }

@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'sriracharegular';
+    src: url('/public/Doc/sriracha-regular-webfont.woff2') format('woff2'),
+         url('/public/Doc/sriracha-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.headercolor{
+   background-color: #313628; 
+}
+
+.maincolor{
+    background-color:#F5F3BB;
+}
+
+.bodycolor {
+    background-color :#575757;
+}
+
+.txtheader {
+    color : #F5F3BB;
+}
+body {
+    font-family: 'Sriracha', cursive;
+}
+
+.marginauto{
+margin : auto;
+}
+
+main {
+    min-height: 60vh;
+}
+
+h1
+{
+    color : white;
+    text-align:center;
+}

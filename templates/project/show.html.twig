@@ -1,38 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
 {% block title %}Project{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Project</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Opening_date</th>
-                <td>{{ project.openingDate ? project.openingDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Deadline</th>
-                <td>{{ project.deadline ? project.deadline|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>Active</th>
-                <td>{{ project.active ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('project_index') }}">back to list</a>
-
-    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
-
-    {{ include('project/_delete_form.html.twig') }}
+    <section class="container row text-center">
+       	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
+				<h4 class="card-header m-2 bg-white">
+					N° {{ project.id }} : {{ project.label }}
+				</h4>
+				<ul class="list-group list-group-flush align-items-center">
+					<li class="list-group-item my-2"> Ouvert le {{ project.openingDate ? project.openingDate|date('d-m-Y') : '' }} fin prévue pour {{ project.deadline ? project.deadline|date('d-m-Y') : '' }}</li>
+					<li class="list-group-item my-2">{{ project.description }}</li>
+				</ul>
+			<div class="container row justify-content-around my-2">
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_index') }}">Retour</a>
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_edit', {'id': project.id}) }}">editer</a>
+                {{ include('project/_delete_form.html.twig') }}
+			</div>
+	</article>
 {% endblock %}

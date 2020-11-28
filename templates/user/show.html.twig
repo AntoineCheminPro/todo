@@ -1,58 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
+
 
 {% block title %}User{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>User</h1>
+<section class="container row text-center">
+        	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
+				<h4 class="card-header m-2 bg-white">
+					{{ user.firstname }}
+					{{ user.lastname }}
+				</h4>
+				<ul class="list-group list-group-flush align-items-center">
+					<li class="list-group-item my-2">{{ user.email }}   {{ user.phone }}</li>
+					<li class="list-group-item my-2">{{ user.adress }}</li>
+					<li class="list-group-item my-2">{{ user.cityCode }} {{ user.city }}</li>
+				</ul>
+			<div class="container row justify-content-around my-2">
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('user_index') }}">Retour</a>
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('user_edit', {'id': user.id}) }}">editer</a>
+                {{ include('user/_delete_form.html.twig') }}
+			</div>
+	</article>
+</section>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ user.adress }}</td>
-            </tr>
-            <tr>
-                <th>City_code</th>
-                <td>{{ user.cityCode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    
 {% endblock %}
