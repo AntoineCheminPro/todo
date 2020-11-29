@@ -45,18 +45,19 @@ class Project
     private $Users;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Task::class, inversedBy="Project")
-     */
-    private $Tasks;
-
-    /**
      * @ORM\Column(type="string", length=100)
      */
     private $label;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="project")
+     */
+    private $tasks;
+
     public function __construct()
     {
         $this->Users = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,17 +137,6 @@ class Project
         return $this;
     }
 
-    public function getTasks(): ?Task
-    {
-        return $this->Tasks;
-    }
-
-    public function setTasks(?Task $Tasks): self
-    {
-        $this->Tasks = $Tasks;
-
-        return $this;
-    }
 
     public function getLabel(): ?string
     {
@@ -156,6 +146,35 @@ class Project
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setProject($this);
+        }
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->removeElement($task)) {
+            // set the owning side to null (unless already changed)
+            if ($task->getProject() === $this) {
+                $task->setProject(null);
+            }
+        }
 
         return $this;
     }

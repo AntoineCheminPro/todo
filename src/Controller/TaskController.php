@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\Project;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,17 @@ class TaskController extends AbstractController
     {
         return $this->render('task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/tasks", name="tasks", methods={"GET"})
+     */
+    public function showTasks(TaskRepository $taskRepository, Project $project): Response
+    {
+        return $this->render('task/index.html.twig', [
+            'project' => $project,
+            'tasks' => $taskRepository->findByProject($project)
         ]);
     }
 
@@ -93,4 +105,6 @@ class TaskController extends AbstractController
 
         return $this->redirectToRoute('task_index');
     }
+
+
 }

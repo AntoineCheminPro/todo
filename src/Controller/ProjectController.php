@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\Task;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,8 +57,12 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project): Response
     {
+        $taskRepository = $this->getDoctrine()->getRepository(Task::class);
+        $tasks = $taskRepository->findBy(array('project' => $project));
+
         return $this->render('project/show.html.twig', [
             'project' => $project,
+            'tasks' => $tasks
         ]);
     }
 

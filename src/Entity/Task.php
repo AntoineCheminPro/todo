@@ -45,14 +45,14 @@ class Task
     private $active;
 
     /**
-     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="Tasks")
-     */
-    private $Project;
-
-    /**
      * @ORM\Column(type="string", length=15)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="tasks")
+     */
+    private $project;
 
     public function __construct()
     {
@@ -124,36 +124,6 @@ class Task
         return $this;
     }
 
-    /**
-     * @return Collection|Project[]
-     */
-    public function getProject(): Collection
-    {
-        return $this->Project;
-    }
-
-    public function addProject(Project $project): self
-    {
-        if (!$this->Project->contains($project)) {
-            $this->Project[] = $project;
-            $project->setTasks($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProject(Project $project): self
-    {
-        if ($this->Project->removeElement($project)) {
-            // set the owning side to null (unless already changed)
-            if ($project->getTasks() === $this) {
-                $project->setTasks(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -162,6 +132,18 @@ class Task
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
 
         return $this;
     }

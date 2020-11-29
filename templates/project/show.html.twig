@@ -1,6 +1,6 @@
 {% extends 'template.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}Projet{% endblock %}
 
 {% block main %}
     <h1>Project</h1>
@@ -19,4 +19,7 @@
                 {{ include('project/_delete_form.html.twig') }}
 			</div>
 	</article>
+
+    {% include 'task/tasks.html.twig' %}
+
 {% endblock %}

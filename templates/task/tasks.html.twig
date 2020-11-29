@@ -1,0 +1,18 @@
+{% block main %}
+    <section class="container row text-center">
+        {% for task in tasks %}
+        	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
+				<h4 class="card-header m-2 bg-white"> N°{{ task.id }} {{ task.label }}</h4>
+				<ul class="list-group list-group-flush align-items-center">
+					<li class="list-group-item my-2">du {{ task.registered ? task.registered|date('d-m-Y') : '' }} fin prévue le : {{ task.deadline ? task.deadline|date('d-m-Y') : '' }}</li>
+					<li class="list-group-item my-2"><button class="btn" onclick="displayContent({{ task.id }})">Afficher le contenu</button></li>
+					<li class="list-group-item my-2 ToHidde"  id="{{task.id}}" name="{{task.id}}">{{ task.content }}</li>
+				</ul>
+			<div class="container row justify-content-around my-2">
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('task_show', {'id': task.id}) }}">Montrer</a>
+				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('task_edit', {'id': task.id}) }}">editer</a>
+			</div>
+
+	</article>
+    {% endfor %}
+{% endblock %}
