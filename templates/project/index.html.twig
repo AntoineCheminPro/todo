@@ -9,7 +9,6 @@
     <section class="container row text-center">
         {% for project in projects %}
         	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
-			{# <div class="card" style="width: 18rem;"> #}
 				<h4 class="card-header m-2 bg-white">
 					N° {{ project.id }} : {{ project.label }}
 				</h4>
@@ -17,28 +16,10 @@
 					<li class="list-group-item my-2"> Ouvert le {{ project.openingDate ? project.openingDate|date('d-m-Y') : '' }} fin prévue pour {{ project.deadline ? project.deadline|date('d-m-Y') : '' }}</li>
 					<li class="list-group-item my-2">{{ project.description }}</li>
 				</ul>
-			{# </div> #}
 			<div class="container row justify-content-around my-2">
 				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_show', {'id': project.id}) }}">Montrer</a>
 				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_edit', {'id': project.id}) }}">editer</a>
 			</div>
 	</article>
     {% endfor %}
-{# </section>
-    <table class="table">
-        <tbody>
-            <tr>
-                <td>{{ project.id }}</td>
-                <td>{{ project.openingDate ? project.openingDate|date('Y-m-d') : '' }}</td>
-                <td>{{ project.deadline ? project.deadline|date('Y-m-d') : '' }}</td>
-                <td>{{ project.description }}</td>
-                {# <td>{{ project.active ? 'Yes' : 'No' }}</td> #}
-                {# <td>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        </tbody>
-    </table> #}
 {% endblock %}

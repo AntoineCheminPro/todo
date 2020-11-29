@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\Task;
 use App\Form\ProjectType;
+use App\Controller\TaskType;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,8 +57,12 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project): Response
     {
+        $taskRepository = $this->getDoctrine()->getRepository(Task::class);
+        $tasks = $taskRepository->findBy(array('project' => $project));
+
         return $this->render('project/show.html.twig', [
             'project' => $project,
+            'tasks' => $tasks
         ]);
     }
 
@@ -79,6 +85,8 @@ class ProjectController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    
 
     /**
      * @Route("/{id}", name="project_delete", methods={"DELETE"})
