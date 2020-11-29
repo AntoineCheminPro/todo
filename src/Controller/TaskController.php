@@ -63,6 +63,30 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @Route("/project/addTask/{id}", name="project_add_task", methods={"GET","POST"})
+     */
+    public function addTask(Request $request, Project $project): Response
+    {
+        $task = new Task();
+        $task->setProject($project);
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('project_index');
+        }
+
+        return $this->render('project/edit.html.twig', [
+            'project' => $project,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="task_show", methods={"GET"})
      */
     public function show(Task $task): Response

@@ -17,6 +17,8 @@ class TaskType extends AbstractType
             ->add('registered')
             ->add('deadline')
             ->add('active')
+            ->add('status')
+           
         ;
     }
 

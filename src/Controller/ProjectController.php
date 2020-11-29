@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\Task;
 use App\Form\ProjectType;
+use App\Controller\TaskType;
 use App\Repository\ProjectRepository;
-use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,6 +85,8 @@ class ProjectController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    
 
     /**
      * @Route("/{id}", name="project_delete", methods={"DELETE"})

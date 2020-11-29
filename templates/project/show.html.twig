@@ -3,23 +3,21 @@
 {% block title %}Projet{% endblock %}
 
 {% block main %}
-    <h1>Project</h1>
-    <section class="container row text-center">
+    <h1>Projet N° {{ project.id }}</h1>
+    <section class="row text-center">
        	<article class="table txt maincolor container p-4 m-4 col-lg-5 col-sm-10 align-items-center justify-content-center">
-				<h4 class="card-header m-2 bg-white">
-					N° {{ project.id }} : {{ project.label }}
-				</h4>
+				<h4 class="card-header m-2 bg-white">{{ project.label }}</h4>
 				<ul class="list-group list-group-flush align-items-center">
 					<li class="list-group-item my-2"> Ouvert le {{ project.openingDate ? project.openingDate|date('d-m-Y') : '' }} fin prévue pour {{ project.deadline ? project.deadline|date('d-m-Y') : '' }}</li>
 					<li class="list-group-item my-2">{{ project.description }}</li>
 				</ul>
 			<div class="container row justify-content-around my-2">
 				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_index') }}">Retour</a>
+				<a class="btn btn-success" href="{{ path('project_add_task',{'id': project.id, 'project' : project}) }}">Ajouter tâche</a>
 				<a class="btn bodycolor txtheader p-2 m-1" href="{{ path('project_edit', {'id': project.id}) }}">editer</a>
                 {{ include('project/_delete_form.html.twig') }}
 			</div>
-	</article>
-
+		</article>
     {% include 'task/tasks.html.twig' %}
-
+	</section>
 {% endblock %}
